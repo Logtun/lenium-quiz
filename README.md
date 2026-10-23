@@ -39,3 +39,5 @@ Commit, and Vercel redeploys on its own.
 ## Editing the questions
 
 The questions live at the top of `app.js` in `QUESTIONS`: each has the question, the correct answer, three wrong answers, the explanation and its source page. Answer order is shuffled on every run, and the total adapts to the number of questions.
+
+Live: https://lenium-quiz.vercel.app/
