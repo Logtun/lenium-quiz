@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenium Quiz · how well do you know Lenium?</title>
+<meta name="description" content="12 quick questions on how Lenium, the prediction market prop firm, works: the evaluation rules, the limits and the payouts. Get a score card to share. Fan-made by @iamlogtun, not official.">
+<meta name="theme-color" content="#0f1222">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lenium Quiz · how well do you know Lenium?">
+<meta property="og:description" content="12 questions on how the prediction market prop firm works. Score, rank, share. Fan-made, not official.">
+<meta property="og:image" content="og.jpg?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="A sample Lenium Quiz score card">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lenium Quiz · how well do you know Lenium?">
+<meta name="twitter:description" content="12 questions on how the prediction market prop firm works. Score, rank, share. Fan-made, not official.">
+<meta name="twitter:image" content="og.jpg?v=1">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://api.fxtwitter.com" crossorigin>
+<link rel="preconnect" href="https://pbs.twimg.com" crossorigin>
+<link rel="preload" href="assets/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://www.lenium.capital/" target="_blank" rel="noopener" aria-label="Lenium">
+    <img src="assets/mark.png" alt="" width="32" height="32">
+    <img src="assets/word.png" alt="Lenium" class="word" height="22">
+  </a>
+  <span class="tag">Quiz</span>
+</header>
+
+<main class="wrap">
+  <section id="s-start" class="screen start">
+    <p class="eyebrow">Fan-made · not official</p>
+    <h1>How well do you know <span class="accent">Lenium?</span></h1>
+    <p class="lede"><span id="totalQ">12</span> quick questions on how the prediction market prop firm works: the market basics, the evaluation rules, the limits and the payouts.</p>
+    <ul class="howto">
+      <li><b>1</b> Pick an answer, see right or wrong straight away</li>
+      <li><b>2</b> Every answer is explained, with the page it comes from</li>
+      <li><b>3</b> Get your score, your rank and a card to share on X</li>
+    </ul>
+    <button class="btn btn-primary btn-lg" id="btnStart" type="button">Start the quiz →</button>
+    <p class="muted small">Takes about 2 minutes. All answers come from lenium.capital, read Oct 23, 2026.</p>
+  </section>
+
+  <section id="s-quiz" class="screen quiz" hidden>
+    <div class="qmeta"><span id="qNum">Question 1 of 12</span><span id="qScore">0 correct</span></div>
+    <div class="prog"><div class="prog-fill" id="progFill"></div></div>
+    <h2 class="qtext" id="qText"></h2>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb" hidden aria-live="polite">
+      <p class="fb-head" id="fbHead"></p>
+      <p class="fb-text" id="fbText"></p>
+      <p class="fb-src" id="fbSrc"></p>
+    </div>
+    <button class="btn btn-primary btn-lg next" id="btnNext" type="button" hidden>Next question →</button>
+  </section>
+
+  <section id="s-result" class="screen result" hidden>
+    <div class="rhead">
+      <p class="eyebrow">Your result</p>
+      <p class="rscore" id="rScore">0/12</p>
+      <p class="rrank" id="rRank"></p>
+      <p class="lede" id="rBlurb"></p>
+    </div>
+    <div class="field">
+      <label for="handle">Add your X handle to the card <span class="muted">(optional)</span></label>
+      <div class="input-prefix"><span>@</span><input id="handle" name="x_handle" type="text" maxlength="16" placeholder="iamlogtun" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="done"></div>
+      <div class="xlookup" id="xLookup" aria-live="polite" data-state="idle">
+        <span class="xl-av" id="xlAv" aria-hidden="true"></span>
+        <span class="xl-text small" id="xlText">Enter your handle and we’ll pull your X name and photo.</span>
+      </div>
+    </div>
+    <div class="canvas-frame">
+      <canvas id="card" width="1200" height="675" role="img" aria-label="Your Lenium Quiz score card"></canvas>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="btnDownload" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg>
+        Download PNG
+      </button>
+      <button class="btn btn-x" id="btnShareX" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="fill"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77L17.75 3zm-1.08 16.17h1.7L7.4 4.73H5.58l11.09 14.44z"/></svg>
+        Share on X
+      </button>
+      <button class="btn btn-ghost" id="btnCopy" type="button" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></svg>
+        Copy image
+      </button>
+      <button class="btn btn-ghost" id="btnRetry" type="button">↻ Retry quiz</button>
+    </div>
+    <div class="caption-box">
+      <div class="cap-head"><label for="caption">Your caption</label><button class="btn btn-ghost btn-sm" id="btnCopyCaption" type="button">Copy caption</button></div>
+      <textarea id="caption" rows="6" readonly></textarea>
+    </div>
+    <p class="hint">On your phone, <strong>Share on X</strong> opens your share sheet with the card and caption: just pick X. On a computer it saves the card and opens X with the caption ready.</p>
+    <div class="cta">
+      <h2>Want to learn the rules properly?</h2>
+      <p>Lenium’s own Rules page has every limit in full, and there’s a free demo to practise on. Every Lenium account is simulated.</p>
+      <a class="btn btn-primary btn-lg" href="https://www.lenium.capital/rules" target="_blank" rel="noopener">Read the Rules →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Fan-made · Lenium accounts are simulated evaluation accounts · <a href="https://www.lenium.capital/" target="_blank" rel="noopener">lenium.capital</a></p>
+  <p>made by <a href="https://x.com/iamlogtun" target="_blank" rel="noopener">@iamlogtun</a> · not official</p>
+  <p class="muted">Not financial advice. <span id="totalQ2">12</span> questions drawn from Lenium’s public pages on Oct 23, 2026; rules can change, so check lenium.capital.</p>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-x" id="modalClose" type="button" aria-label="Close">×</button>
+    <h3 id="modalTitle">Save your card</h3>
+    <p class="muted" id="modalSteps">Press and hold the image, then tap <strong>Save to Photos</strong>.</p>
+    <img id="modalImg" alt="Your Lenium Quiz score card">
+    <a class="btn btn-x modal-openx" id="modalOpenX" href="https://x.com/intent/tweet" target="_blank" rel="noopener" hidden>Open X →</a>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js?v=1" defer></script>
+</body>
+</html>
